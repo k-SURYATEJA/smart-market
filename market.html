@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Markets | Smart Marketing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a; --bg-darker: #0b1120; --card-bg: rgba(255, 255, 255, 0.05);
+            --primary: #00f5a0; --secondary: #00d9f5; --danger: #ff4757; 
+            --text-light: #ffffff; --text-muted: #94a3b8;
+            --gradient: linear-gradient(45deg, var(--primary), var(--secondary));
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--bg-dark); color: var(--text-light); }
+
+        /* NAVBAR */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); position: fixed; width: 100%; z-index: 1000; }
+        nav h1 { color: var(--primary); cursor: pointer; }
+        nav ul { display: flex; list-style: none; gap: 30px; align-items: center; }
+        nav ul li a { color: var(--text-light); text-decoration: none; transition: 0.3s; }
+        nav ul li a:hover { color: var(--primary); }
+        .login-btn { background: var(--gradient); border: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; cursor: pointer; color: black; }
+
+        /* PAGE HEADER */
+        .page-header { padding: 150px 8% 60px; text-align: center; background: radial-gradient(circle at top, #1e293b, var(--bg-dark)); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .page-header h1 { font-size: 42px; margin-bottom: 15px; }
+        .page-header h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .page-header p { color: var(--text-muted); font-size: 18px; }
+
+        /* TOP MOVERS CARDS */
+        .section-padding { padding: 80px 8%; }
+        .section-title { font-size: 28px; margin-bottom: 30px; border-left: 4px solid var(--primary); padding-left: 15px; }
+        
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        .card { background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: rgba(0, 245, 160, 0.3); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .card-header h3 { font-size: 20px; }
+        .positive { color: var(--primary); font-weight: bold; }
+        .negative { color: var(--danger); font-weight: bold; }
+        .card h2 { font-size: 32px; margin-bottom: 5px; }
+
+        /* MARKET TABLE */
+        .table-container { width: 100%; overflow-x: auto; background: var(--bg-darker); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th, td { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        th { color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 14px; background: rgba(0,0,0,0.2); }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        
+        .asset-info { display: flex; align-items: center; gap: 15px; }
+        .asset-icon { width: 40px; height: 40px; border-radius: 60%; background: var(--gradient); display: flex; justify-content: center; align-items: center; color: black; font-weight: bold; }
+        .asset-name { font-weight: bold; font-size: 16px; }
+        .asset-ticker { color: var(--text-muted); font-size: 12px; }
+
+        /* FOOTER */
+        footer { text-align: center; padding: 40px 20px; background: var(--bg-darker); color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body>
+
+<nav>
+    <h1 onclick="location.href='index.html'">Smart Marketing</h1>
+    <ul>
+        <li><a href="smartmarket.html">Home</a></li>
+         <li><a style="color: #00f5a0;" href="market.html">Markets</a></li>
+        <li><a href="indices.html">Indices</a></li>
+        <li><a href="trading.html">Trading</a></li>
+    </ul>
+</nav>
+
+<section class="page-header">
+    <h1>Live <span>Market</span> Overview</h1>
+    <p>Track top gainers, monitor your watchlist, and analyze the market.</p>
+</section>
+
+<section class="section-padding">
+    <h2 class="section-title">Major Indina Markets & Movers</h2>
+    <div class="cards">
+        <div class="card">
+            <div class="card-header">
+                <h3>NIFTY 50</h3>
+                <span class="positive">+0.65%</span>
+            </div>
+            <h2>₹22,450.15</h2>
+            <p class="text-muted">Volume: 310M</p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h3>BANK NIFTY</h3>
+                <span class="positive">+1.10%</span>
+            </div>
+            <h2>₹48,120.30</h2>
+            <p class="text-muted">Volume: 185M</p>
+        </div>
+
+<div class="card">
+            <div class="card-header">
+                <h3>INDIA VIX</h3>
+                <span class="positive">+1.10%</span>
+            </div>
+            <h2>₹48,120.30</h2>
+            <p class="text-muted">Volume: 185M</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>SENSEX</h3>
+                <span class="positive">+0.58%</span>
+            </div>
+            <h2>₹73,950.40</h2>
+            <p class="text-muted">Volume: 12M</p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h3>ICICI BANK </h3>
+                <span class="negative">-3.20%</span>
+            </div>
+            <h2>₹11.85</h2>
+            <p class="text-muted">Volatility Index</p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h3>Reliance</h3>
+                <span class="positive">+4.25%</span>
+            </div>
+            <h2>₹2,875.20</h2>
+            <p class="text-muted">Volume: 45.2M</p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h3>HDFC Bank</h3>
+                <span class="negative">-2.10%</span>
+            </div>
+            <h2>₹1,470.85</h2>
+            <p class="text-muted">Volume: 82.1M</p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h3>SBI Bank</h3>
+                <span class="positive">+1.80%</span>
+            </div>
+            <h2>₹750.40</h2>
+            <p class="text-muted">Volume: 12.5M</p>
+        </div>
+    </div>
+
+    <h2 class="section-title">Market Screener</h2>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Asset</th>
+                    <th>Last Price</th>
+                    <th>24h Change</th>
+                    <th>Market Cap</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="asset-info">
+                            <div class="asset-icon">A</div>
+                            <div>
+                                <div class="asset-name">Apple Inc.</div>
+                                <div class="asset-ticker">AAPL</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>$173.50</td>
+                    <td class="positive">+1.12%</td>
+                    <td>$2.68T</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="asset-info">
+                            <div class="asset-icon" style="background: #fff; color: #000;">M</div>
+                            <div>
+                                <div class="asset-name">Microsoft Corp.</div>
+                                <div class="asset-ticker">MSFT</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>$405.20</td>
+                    <td class="positive">+0.85%</td>
+                    <td>$3.01T</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="asset-info">
+                            <div class="asset-icon" style="background: #76b900; color: #fff;">N</div>
+                            <div>
+                                <div class="asset-name">NVIDIA Corp.</div>
+                                <div class="asset-ticker">NVDA</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>$885.10</td>
+                    <td class="positive">+3.45%</td>
+                    <td>$2.20T</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="asset-info">
+                            <div class="asset-icon" style="background: #ff4757; color: #fff;">N</div>
+                            <div>
+                                <div class="asset-name">Netflix Inc.</div>
+                                <div class="asset-ticker">NFLX</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>$612.30</td>
+                    <td class="negative">-1.45%</td>
+                    <td>$264B</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="asset-info">
+                            <div class="asset-icon" style="background: #e1b12c; color: #fff;">T</div>
+                            <div>
+                                <div class="asset-name">Tata Consultancy</div>
+                                <div class="asset-ticker">TCS</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>₹3,980.00</td>
+                    <td class="positive">+0.50%</td>
+                    <td>₹14.5T</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="asset-info">
+                            <div class="asset-icon" style="background: #007bff; color: #fff;">I</div>
+                            <div>
+                                <div class="asset-name">Infosys Ltd.</div>
+                                <div class="asset-ticker">INFY</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>₹1,485.60</td>
+                    <td class="negative">-0.35%</td>
+                    <td>₹6.1T</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="asset-info">
+                            <div class="asset-icon" style="background: #f39c12; color: #fff;">I</div>
+                            <div>
+                                <div class="asset-name">ICICI Bank</div>
+                                <div class="asset-ticker">ICICIBANK</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>₹1,120.45</td>
+                    <td class="positive">+1.25%</td>
+                    <td>₹7.8T</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="asset-info">
+                            <div class="asset-icon" style="background: #333; color: #fff;">T</div>
+                            <div>
+                                <div class="asset-name">Tesla Inc.</div>
+                                <div class="asset-ticker">TSLA</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>$175.22</td>
+                    <td class="negative">-2.15%</td>
+                    <td>$550B</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Smart Marketing | Data is delayed by 15 minutes. Trading involves high risk.</p>
+</footer>
+
+</body>
+</html>
