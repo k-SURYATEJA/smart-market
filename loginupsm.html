@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Login | Smart Marketing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --primary: #00f5a0;
+            --secondary: #00d9f5;
+            --text-light: #ffffff;
+            --text-muted: #94a3b8;
+            --gradient: linear-gradient(45deg, var(--primary), var(--secondary));
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body {
+            background: radial-gradient(circle at top, #1e293b, var(--bg-dark));
+            color: var(--text-light);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-wrapper {
+            display: flex;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            width: 800px;
+            max-width: 90%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            overflow: hidden; 
+        }
+
+        .auth-image-area {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+        
+        .auth-image-area img {
+            max-width: 100%;
+            border-radius: 15px; 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .auth-form-area {
+            flex: 1;
+            padding: 50px 40px;
+        }
+
+        .auth-form-area h2 { text-align: center; margin-bottom: 30px; font-size: 24px; }
+
+        .input-group { margin-bottom: 20px; position: relative; }
+        .input-group input {
+            width: 100%; padding: 15px 20px 15px 45px;
+            border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.3); color: white; outline: none; transition: 0.3s;
+        }
+        .input-group input:focus { border-color: var(--primary); background: rgba(0,0,0,0.5); }
+
+        .input-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 18px; }
+
+        .submit-btn {
+            width: 100%; padding: 15px; border: none; border-radius: 50px; background: var(--gradient);
+            color: black; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.4s; margin-top: 10px;
+        }
+        .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 245, 160, 0.2); }
+
+        .links-area { text-align: center; margin-top: 20px; font-size: 13px; }
+        .links-area a { color: var(--text-muted); text-decoration: none; transition: 0.3s; display: block; margin-top: 15px; }
+        .links-area a:hover { color: var(--primary); }
+        .switch-link { margin-top: 30px; font-weight: 600; font-size: 15px; }
+
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 50px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .back-btn:hover { transform: translateX(-5px); text-shadow: 0 0 10px rgba(0,245,160,0.4); }
+       
+        
+    </style>
+</head>
+<body>
+         <a href="smartmarket.html" class="back-btn">← Back to Home</a>
+    <div class="auth-wrapper">
+        <div class="auth-image-area">
+            <img src="download.png" alt="Login Illustration">
+        </div>
+
+        <div class="auth-form-area">
+            <h2>Member Login</h2>
+            <form action="#">
+                <div class="input-group">
+                    <span class="input-icon">✉</span>
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <span class="input-icon">🔒</span>
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="submit-btn">LOGIN</button>
+                
+                <div class="links-area">
+                    <a href="#">Forgot Password?</a>
+                    <a href="signupsm.html" class="switch-link">Don't have an account? Sign Up ➔</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
