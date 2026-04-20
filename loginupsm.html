@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Login | Smart Marketing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+
+
+* {
+margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+background: #111111;
+  color: #ffffff;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+nav {
+display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+  background: rgba(0, 0, 0, 0.95);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  top: 0;
+}
+
+nav h1 {
+color: #FFD700;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+nav h1:hover {
+}
+
+nav ul {
+display: flex;
+  list-style: none;
+  gap: 30px;
+  align-items: center;
+}
+
+nav ul li a {
+color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+nav ul li a:hover {
+color: #FFD700;
+}
+
+.btnsub {
+background: #FFD700;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btnsub {
+width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.btnsub:hover {
+}
+
+table {
+width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th {
+background: rgba(0, 0, 0, 0.4);
+  color: #FFC107;
+  padding: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+td {
+padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  vertical-align: middle;
+}
+
+tr:hover {
+background: rgba(255, 255, 255, 0.02);
+}
+
+.authpage {
+display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #111111;
+}
+
+.authbox {
+display: flex;
+  background: rgba(255, 215, 0, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 800px;
+  max-width: 90%;
+  overflow: hidden;
+  margin: auto;
+}
+
+.authimage {
+flex: 1;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.authimage img {
+max-width: 100%;
+  border-radius: 8px;
+}
+
+.authform {
+flex: 1;
+  padding: 50px 40px;
+}
+
+.authform h2 {
+text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.inputgrp {
+margin-bottom: 20px;
+  position: relative;
+}
+
+.inputgrp input {
+width: 100%;
+  padding: 15px 20px 15px 45px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  outline: none;
+}
+
+.inputgrp input:focus {
+border-color: #FFD700;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.inputicon {
+position: absolute;
+  left: 18px;
+  top: 50%;
+  color: #aaaaaa;
+  font-size: 18px;
+}
+
+.linksarea {
+text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+}
+
+.linksarea a {
+color: #aaaaaa;
+  text-decoration: none;
+  display: block;
+  margin-top: 15px;
+}
+
+.linksarea a:hover {
+color: #FFD700;
+}
+
+.switchlink {
+margin-top: 30px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.backbtn {
+position: absolute;
+  top: 30px;
+  left: 50px;
+  color: #FFD700;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.backbtn:hover {
+}
+
+footer {
+text-align: center;
+  padding: 40px 20px;
+  background: #000000;
+  color: #aaaaaa;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: auto;
+}
+
+</style>
+</head>
+
+<body class="authpage">
+    <a href="index.html" class="backbtn">← Back to Home</a>
+    <div class="authbox">
+        <div class="authimage">
+            <img src="download.png" alt="Login Illustration">
+        </div>
+
+        <div class="authform">
+            <h2>Member Login</h2>
+            <form id="login-form">
+                <div class="inputgrp">
+                    <span class="inputicon">✉</span>
+                    <input type="text" id="email" placeholder="Email">
+                </div>
+                <div class="inputgrp">
+                    <span class="inputicon">🔒</span>
+                    <input type="password" id="password" placeholder="Password">
+                </div>
+
+                <button type="submit" class="btnsub">LOGIN</button>
+
+                <div class="linksarea">
+                    <a href="#">Forgot Password?</a>
+                    <a href="signupsm.html" class="switchlink">Don't have an account? Sign Up ➔</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('login-form');
+
+        loginForm.addEventListener('submit', function (event) {
+
+            event.preventDefault();
+
+            const emailInput = document.getElementById('email').value;
+            const passwordInput = document.getElementById('password').value;
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          const passreg=/^[a-zA-Z0-9]{8,}$/;
+
+
+
+            if (emailInput === "") {
+                alert("Please enter your email address.");
+                return false;
+            }
+
+            if (!emailRegex.test(emailInput)) {
+                alert("Please enter a valid email address");
+                return false;
+            }
+            if (!passreg.test(passwordInput)) {
+                alert("Please enter a valid password");
+                return false;
+            }
+
+            if (passwordInput === "") {
+                alert("Please enter your password.");
+                return false;
+            }
+
+            if (passwordInput.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false;
+            }
+            alert("Login Successfull");
+            window.location.href = "indexhome.html";
+            return true;
+        });
+    </script>
+</body>
+
+</html>

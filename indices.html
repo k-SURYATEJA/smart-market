@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Indices | Smart Marketing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #111111;
+  color: #ffffff;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+  background: rgba(0, 0, 0, 0.95);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  top: 0;
+}
+
+nav h1 {
+  color: #FFD700;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  align-items: center;
+}
+
+nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+nav ul li a:hover {
+  color: #FFD700;
+}
+
+.pagehead {
+  padding: 150px 8% 60px;
+  text-align: center;
+  background: #111111;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pagehead h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.pagehead h1 span {
+  background: #FFD700;
+  color: #111111;
+  padding: 0 6px;
+}
+
+.pagehead p {
+  color: #aaaaaa;
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+.section {
+  padding: 80px 8%;
+}
+
+.sectiontitle {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #ffffff;
+  border-left: 4px solid #FFD700;
+  padding-left: 15px;
+}
+
+.positive {
+  color: #FFD700;
+  font-weight: 700;
+}
+
+.negative {
+  color: #ff4757;
+  font-weight: 700;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.grid .box {
+  flex: 1 1 250px;
+}
+
+.box {
+  background: rgba(255, 215, 0, 0.05);
+  padding: 40px 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+}
+
+.box:hover {
+  background: rgba(255, 215, 0, 0.07);
+  border-color: rgba(255, 215, 0, 0.4);
+}
+
+.box h3 {
+  margin-bottom: 15px;
+  color: #FFC107;
+  font-size: 22px;
+}
+
+.box p {
+  color: #aaaaaa;
+  line-height: 1.6;
+}
+
+.box h2 {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.cardheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  background: #000000;
+  color: #aaaaaa;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: auto;
+}
+
+    </style>
+</head>
+<body>
+
+<nav>
+    <h1 onclick="location.href='indexhome.html'">Smart Marketing</h1>
+    <ul>
+        <li><a href="indexhome.html">Home</a></li>
+        <li><a href="market.html">Markets</a></li>
+        <li><a href="investmentup.html">Investment</a></li>
+        <li><a style="color: #FFD700;" href="indices.html">Indices</a></li>
+    </ul>
+</nav>
+
+<section class="pagehead">
+    <h1>Indian <span>Market Indices</span></h1>
+    <p>Monitor the heartbeat of the Indian economy through real-time tracking of NSE and BSE indices.</p>
+</section>
+
+<section class="section">
+
+    <!-- Benchmark Indices -->
+    <h2 class="sectiontitle">Benchmark Indices</h2>
+    <div class="grid">
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY 50</h3>
+                <span class="positive">+0.61%</span>
+            </div>
+            <h2>22,453.30</h2>
+            <p>▲ 135.90 &nbsp;|&nbsp; NSE</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>BSE SENSEX</h3>
+                <span class="positive">+0.56%</span>
+            </div>
+            <h2>73,950.40</h2>
+            <p>▲ 412.15 &nbsp;|&nbsp; BSE</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>BANK NIFTY</h3>
+                <span class="positive">+1.10%</span>
+            </div>
+            <h2>48,120.30</h2>
+            <p>▲ 520.45 &nbsp;|&nbsp; NSE</p>
+        </div>
+    </div>
+
+    <!-- Broad Market -->
+    <h2 class="sectiontitle">Broad Market Indices</h2>
+    <div class="grid">
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY 500</h3>
+                <span class="positive">+0.56%</span>
+            </div>
+            <h2>20,850.40</h2>
+            <p>▲ 115.20 &nbsp;|&nbsp; NSE</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY Next 50</h3>
+                <span class="positive">+0.40%</span>
+            </div>
+            <h2>61,240.15</h2>
+            <p>▲ 245.80 &nbsp;|&nbsp; NSE</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY Midcap 100</h3>
+                <span class="negative">-0.24%</span>
+            </div>
+            <h2>49,850.60</h2>
+            <p>▼ 120.30 &nbsp;|&nbsp; NSE</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY Smallcap 100</h3>
+                <span class="negative">-0.52%</span>
+            </div>
+            <h2>16,210.90</h2>
+            <p>▼ 85.40 &nbsp;|&nbsp; NSE</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>BSE MidCap</h3>
+                <span class="negative">-0.11%</span>
+            </div>
+            <h2>39,450.10</h2>
+            <p>▼ 45.15 &nbsp;|&nbsp; BSE</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>BSE SmallCap</h3>
+                <span class="positive">+0.71%</span>
+            </div>
+            <h2>45,670.80</h2>
+            <p>▲ 320.40 &nbsp;|&nbsp; BSE</p>
+        </div>
+    </div>
+
+    <!-- Sectoral Indices -->
+    <h2 class="sectiontitle">Top Sectoral Indices</h2>
+    <div class="grid">
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY IT</h3>
+                <span class="positive">+1.17%</span>
+            </div>
+            <h2>35,420.75</h2>
+            <p>▲ 410.20 &nbsp;|&nbsp; NSE</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY Auto</h3>
+                <span class="positive">+0.53%</span>
+            </div>
+            <h2>21,890.30</h2>
+            <p>▲ 115.60 &nbsp;|&nbsp; NSE</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY Pharma</h3>
+                <span class="negative">-0.24%</span>
+            </div>
+            <h2>18,950.10</h2>
+            <p>▼ 45.80 &nbsp;|&nbsp; NSE</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY FMCG</h3>
+                <span class="positive">+0.15%</span>
+            </div>
+            <h2>54,320.50</h2>
+            <p>▲ 80.25 &nbsp;|&nbsp; NSE</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY Metal</h3>
+                <span class="positive">+1.45%</span>
+            </div>
+            <h2>8,420.50</h2>
+            <p>▲ 120.45 &nbsp;|&nbsp; NSE</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY Realty</h3>
+                <span class="positive">+2.10%</span>
+            </div>
+            <h2>950.30</h2>
+            <p>▲ 19.60 &nbsp;|&nbsp; NSE</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY Energy</h3>
+                <span class="negative">-0.50%</span>
+            </div>
+            <h2>40,150.25</h2>
+            <p>▼ 201.40 &nbsp;|&nbsp; NSE</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY PSU Bank</h3>
+                <span class="positive">+1.80%</span>
+            </div>
+            <h2>7,240.10</h2>
+            <p>▲ 128.30 &nbsp;|&nbsp; NSE</p>
+        </div>
+    </div>
+
+    <!-- Thematic Indices -->
+    <h2 class="sectiontitle">Thematic Indices</h2>
+    <div class="grid">
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY CPSE</h3>
+                <span class="positive">+0.75%</span>
+            </div>
+            <h2>3,120.60</h2>
+            <p>▲ 23.40 &nbsp;|&nbsp; NSE</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY Infrastructure</h3>
+                <span class="positive">+0.90%</span>
+            </div>
+            <h2>8,560.40</h2>
+            <p>▲ 76.50 &nbsp;|&nbsp; NSE</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY PSE</h3>
+                <span class="negative">-0.30%</span>
+            </div>
+            <h2>9,840.10</h2>
+            <p>▼ 29.50 &nbsp;|&nbsp; NSE</p>
+        </div>
+    </div>
+
+    <!-- Market Volatility -->
+    <h2 class="sectiontitle">Market Volatility</h2>
+    <div class="grid">
+        <div class="box">
+            <div class="cardheader">
+                <h3>INDIA VIX</h3>
+                <span class="negative">-3.26%</span>
+            </div>
+            <h2>11.85</h2>
+            <p>▼ 0.40 &nbsp;|&nbsp; Fear Gauge Indicator</p>
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    <p>&copy; 2026 Smart Marketing | Data is delayed by 15 minutes. Trading involves high risk.</p>
+</footer>
+
+</body>
+</html>

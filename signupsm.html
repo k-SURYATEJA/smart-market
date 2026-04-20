@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Smart Marketing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body {
+            background: #111111;
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .authwrapper {
+            display: flex;
+            background: rgba(255, 215, 0, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 800px;
+            max-width: 90%;
+            overflow: hidden; 
+        }
+
+        .authimage {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+        
+        .authimage img {
+            max-width: 100%;
+            border-radius: 8px; 
+        }
+
+        .authform { flex: 1; padding: 50px 40px; }
+        .authform h2 { text-align: center; margin-bottom: 30px; font-size: 24px; }
+
+        .inputgrp { margin-bottom: 20px; position: relative; }
+        .inputgrp input {
+            width: 100%; padding: 15px 20px 15px 45px;
+            border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);
+             color:black;
+        }
+        .inputgrp input:focus { border-color: #FFD700;  }
+
+
+        .submitbtn {
+            width: 100%; padding: 15px; border: none; border-radius: 8px; background: #FFD700;
+        }
+
+        .linksarea { text-align: center; margin-top: 20px; font-size: 13px; }
+        .linksarea a:hover { color: #FFD700; }
+        .switchlink { margin-top: 30px; font-weight: 600; font-size: 15px; }
+
+      
+    </style>
+</head>
+<body>
+
+    <div class="authwrapper">
+        <div class="authimage">
+            <img src="download.jpg" alt="Sign Up Illustration">
+        </div>
+
+        <div class="authform">
+            <h2>Create Account</h2>
+            <form id="signup-form">
+                <div class="inputgrp">
+                    <span class="inputicon">👤</span>
+                    <input type="text" id="firstname" placeholder="First Name">
+                </div>
+                <div class="inputgrp">
+                    <span class="inputicon">👤</span>
+                    <input type="text" id="lastname" placeholder="Last Name">
+                </div>
+                <div class="inputgrp">
+                    <span class="inputicon">✉</span>
+                    <input type="text" id="email" placeholder="Email">
+                </div>
+                <div class="inputgrp">
+                    <span class="inputicon">🔒</span>
+                    <input type="password" id="password" placeholder="Password">
+                </div>
+                <div class="inputgrp">
+                    <span class="inputicon">🔒</span>
+                    <input type="password" id="confirmpassword" placeholder="Confirm Password">
+                </div>
+                <button type="submit" class="submitbtn">SIGN UP</button>
+                
+                <div class="linksarea">
+                    <a href="loginupsm.html" class="switchlink">⬅ Back to Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const signupForm = document.getElementById('signup-form');
+
+        signupForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const firstname = document.getElementById('firstname').value.trim();
+            const lastname = document.getElementById('lastname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmpassword = document.getElementById('confirmpassword').value;
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const passreg = /^[a-zA-Z0-9]{8,}$/;
+
+            if (firstname === "") {
+                alert("Please enter your first name.");
+                return false;
+            }
+
+            if (lastname === "") {
+                alert("Please enter your last name.");
+                return false;
+            }
+
+            if (email === "") {
+                alert("Please enter your email address.");
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+
+            if (password === "") {
+                alert("Please enter a password.");
+                return false;
+            }
+
+            if (!passreg.test(password)) {
+                alert("Password must be at least 8 characters and contain only letters and numbers.");
+                return false;
+            }
+
+            if (confirmpassword === "") {
+                alert("Please confirm your password.");
+                return false;
+            }
+
+            if (password !== confirmpassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            alert("Account Created Successfully!");
+            window.location.href = "indexhome.html";
+            return true;
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Marketing | Invest Now</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: #111111;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ── NAV ── */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(0, 0, 0, 0.95);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            top: 0;
+        }
+
+        nav h1 {
+            color: #FFD700;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+            margin-left: auto;
+            margin-right: 40px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #FFD700;
+        }
+
+        /* ── PAGE WRAPPER ── */
+        .page {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 120px 8% 80px;
+        }
+
+        /* ── CARD ── */
+        .card {
+            background: #1a1a1a;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 8px;
+            padding: 60px 55px;
+            width: 100%;
+            max-width: 520px;
+        }
+
+        /* Back link */
+        .back-link {
+            display: inline-block;
+            color: #aaaaaa;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .back-link:hover { color: #FFD700; }
+
+        /* Market info banner */
+        .market-banner {
+            background: rgba(255, 215, 0, 0.07);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin-bottom: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .market-banner .market-label {
+            font-size: 13px;
+            color: #aaaaaa;
+            margin-bottom: 4px;
+        }
+
+        .market-banner .market-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFD700;
+        }
+
+        .market-banner .type-badge {
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            background: rgba(255, 215, 0, 0.12);
+            color: #FFD700;
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            white-space: nowrap;
+        }
+
+        /* Heading */
+        .card h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .card p.subtitle {
+            color: #aaaaaa;
+            font-size: 14px;
+            margin-bottom: 35px;
+        }
+
+        /* Form fields */
+        .field {
+            margin-bottom: 22px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #aaaaaa;
+            margin-bottom: 8px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 13px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .field select option {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            border-color: #FFD700;
+        }
+
+        .field input::placeholder {
+            color: #555555;
+        }
+
+        /* Two columns side by side */
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* Submit button */
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #FFD700;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover { background: #FFC107; }
+
+        /* ── SUCCESS STATE ── */
+        .success-view {
+            display: none;
+            text-align: center;
+        }
+
+        .success-view .check {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .success-view h2 {
+            font-size: 26px;
+            color: #00C853;
+            margin-bottom: 12px;
+        }
+
+        .success-view p {
+            color: #aaaaaa;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .success-view a {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #FFD700;
+            color: #000;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .success-view a:hover { background: #FFC107; }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #000000;
+            color: #aaaaaa;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footerlinks {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footerlinks a {
+            color: #aaaaaa;
+            text-decoration: none;
+        }
+
+        .footerlinks a:hover { color: #FFD700; }
+
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <h1 onclick="location.href='index.html'">Smart Marketing</h1>
+        <ul>
+            <li><a href="indexhome.html">Home</a></li>
+            <li><a href="market.html">Markets</a></li>
+            <li><a href="investment.html" class="active">Investment</a></li>
+            <li><a href="indices.html">Indexes</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN PAGE -->
+    <div class="page">
+        <div class="card">
+
+            <!-- FORM VIEW -->
+            <div id="formView">
+
+                <a class="back-link" href="startinvesting.html">← Back to Markets</a> 
+                
+
+                <h2>Investment Details</h2>
+                <p class="subtitle">Fill in the details below to place your investment.</p>
+
+                <!-- Full Name -->
+                <div class="field">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" placeholder="e.g. Ravi Kumar" />
+                </div>
+
+                <!-- Email -->
+                <div class="field">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="e.g. ravi@email.com" />
+                </div>
+
+                <!-- Amount + Duration side by side -->
+                <div class="field-row">
+                    <div class="field">
+                        <label for="amount">Amount (₹)</label>
+                        <input type="number" id="amount" placeholder="e.g. 10000" min="100" />
+                    </div>
+                    <div class="field">
+                        <label for="duration">Duration</label>
+                        <select id="duration">
+                            <option value="" disabled selected>Select</option>
+                            <option value="3 Months">3 Months</option>
+                            <option value="6 Months">6 Months</option>
+                            <option value="1 Year">1 Year</option>
+                            <option value="3 Years">3 Years</option>
+                            <option value="5 Years">5 Years</option>
+                            <option value="10 Years">10 Years</option>
+                            <option value="Long-term">Long-term</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Risk Appetite -->
+                <div class="field">
+                    <label for="risk">Risk Appetite</label>
+                    <select id="risk">
+                        <option value="" disabled selected>Select your risk level</option>
+                        <option value="Conservative">Conservative — I prefer safety</option>
+                        <option value="Moderate">Moderate — Balanced approach</option>
+                        <option value="Aggressive">Aggressive — I want maximum growth</option>
+                    </select>
+                </div>
+
+                <button class="submit-btn" onclick="submitForm()">Confirm Investment →</button>
+
+            </div>
+
+            <!-- SUCCESS VIEW -->
+            <div class="success-view" id="successView">
+                <div class="check">✅</div>
+                <h2>Investment Placed!</h2>
+                <p id="successMsg">Your investment has been submitted successfully.</p>
+                <a href="startinvesting.html">← Back to Markets</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footerlinks">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Risk Disclosure</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <p>&copy; 2026 Smart Marketing | All Rights Reserved. Investing involves risk.</p>
+    </footer>
+
+    <script>
+
+        // Read market name and type from URL
+        const params     = new URLSearchParams(window.location.search);
+        const marketName = params.get('market') || ' Market';
+
+      
+
+        // Submit form
+        function submitForm() {
+            const name     = document.getElementById('fullName').value.trim();
+            const email    = document.getElementById('email').value.trim();
+            const amount   = document.getElementById('amount').value.trim();
+            const duration = document.getElementById('duration').value;
+            const risk     = document.getElementById('risk').value;
+
+            if (!name) { alert('Please enter your full name.'); return; }
+            if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+            if (!amount || isNaN(amount) || Number(amount) < 100) { alert('Please enter a valid amount (minimum ₹100).'); return; }
+            if (!duration) { alert('Please select an investment duration.'); return; }
+            if (!risk) { alert('Please select your risk appetite.'); return; }
+
+            document.getElementById('successMsg').textContent =
+                name + ', your investment of ₹' + Number(amount).toLocaleString('en-IN') +
+                ' in ' + marketName + ' for ' + duration +
+                ' has been placed successfully. We will reach you at ' + email + ' shortly.';
+
+            document.getElementById('formView').style.display   = 'none';
+            document.getElementById('successView').style.display = 'block';
+        }
+
+    </script>
+
+</body>
+</html>

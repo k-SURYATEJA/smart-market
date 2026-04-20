@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indian Markets | Smart Marketing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #111111;
+      color: #ffffff;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      background: rgba(0, 0, 0, 0.95);
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      top: 0;
+    }
+
+    nav h1 {
+      color: #FFD700;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    nav h1:hover {
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+      align-items: center;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: 400;
+    }
+
+    nav ul li a:hover {
+      color: #FFD700;
+    }
+
+
+    .btntrd {
+      background: #FFD700;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btntrd {
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+
+    .btntrd:hover {
+    }
+
+    .pagehead {
+      padding: 150px 8% 60px;
+      text-align: center;
+      background: #111111;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .pagehead h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .pagehead h1 span {
+      background: #FFD700;
+      color: #000;
+    }
+
+    .pagehead p {
+      color: #aaaaaa;
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 18px;
+    }
+
+    .contentsection {
+      padding: 60px 8%;
+      min-height: 50vh;
+    }
+
+
+    table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #111111;
+}
+
+th {
+  background: #000000;
+  color: #FFD700;
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #FFD700;
+  font-size: 14px;
+}
+
+td {
+  padding: 12px 15px;
+  border: 1px solid #333333;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+tr:nth-child(even) {
+  background: #1a1a1a;
+}
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: #000000;
+      color: #aaaaaa;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: auto;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <nav>
+    <h1 onclick="location.href='indexhome.html'">Smart Marketing</h1>
+    <ul>
+      <li><a href="indexhome.html">Home</a></li>
+      <li><a href="market.html">Markets</a></li>
+      <li><a href="investmentup.html">Investment</a></li>
+      <li><a href="indices.html">Indices</a></li>
+
+    </ul>
+  </nav>
+
+  <section class="pagehead">
+    <h1>Indian <span>Markets & Indices</span></h1>
+    <p>Select your preferred Indian market or index below to open options and start trading immediately.</p>
+  </section>
+
+  <section class="contentsection">
+    
+      <table class="table1">
+        <thead>
+          <tr>
+            <th>Market / Index</th>
+            <th>Exchange</th>
+            <th>Category</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>NIFTY 50<br>National Stock Exchange</td>
+            <td>NSE</td>
+            <td>Broad Market Index</td>
+            <td><button class="btntrd"
+                onclick="handleTradeAction('Opening Nifty 50 Trading Options...', 'https://in.tradingview.com/chart/UZhxswkY/?symbol=NSE%3ANIFTY')">Trade</button>
+            </td>
+          </tr>
+          <tr>
+            <td>BSE SENSEX<br>Bombay Stock Exchange</td>
+            <td>BSE</td>
+            <td>Broad Market Index</td>
+            <td><button class="btntrd"
+                onclick="handleTradeAction('Opening Sensex Trading Options...', 'https://in.tradingview.com/chart/UZhxswkY/?symbol=BSE%3ASENSEX')">Trade</button>
+            </td>
+          </tr>
+          <tr>
+            <td>BANK NIFTY<br>National Stock Exchange</td>
+            <td>NSE</td>
+            <td>Sectoral Index (Banking)</td>
+            <td><button class="btntrd"
+                onclick="handleTradeAction('Opening Bank Nifty Trading Options...', 'https://in.tradingview.com/chart/UZhxswkY/?symbol=NSE%3ABANKNIFTY')">Trade</button>
+            </td>
+          </tr>
+          <tr>
+            <td>FINNIFTY<br>National Stock Exchange</td>
+            <td>NSE</td>
+            <td>Sectoral Index (Financials)</td>
+            <td><button class="btntrd"
+                onclick="handleTradeAction('Opening FinNifty Trading Options...', 'https://in.tradingview.com/chart/UZhxswkY/?symbol=NSE%3AFINNIFTY1!')">Trade</button>
+            </td>
+          </tr>
+          <tr>
+            <td>MIDCPNIFTY<br>National Stock Exchange</td>
+            <td>NSE</td>
+            <td>Midcap Index</td>
+            <td><button class="btntrd"
+                onclick="handleTradeAction('Opening Midcap Nifty Trading Options...', 'https://in.tradingview.com/chart/UZhxswkY/?symbol=NSE%3AMIDCPNIFTY1%21')">Trade</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    
+  </section>
+
+  <footer>
+    <p>© 2026 Smart Marketing | Trading involves high risk. Never trade with money you cannot afford to lose.</p>
+  </footer>
+
+  <script>
+    function handleTradeAction(message, url) {
+      alert(message);
+      window.location.href = url;
+    }
+  </script>
+
+</body>
+
+</html>

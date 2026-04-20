@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Investing | Smart Marketing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #111111;
+      color: #ffffff;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      background: rgba(0, 0, 0, 0.95);
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      top: 0;
+    }
+
+    nav h1 {
+      color: #FFD700;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+      align-items: center;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: 400;
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+      color: #FFD700;
+    }
+
+    .btntrd {
+      background: #FFD700;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .btntrd:hover {
+      background: #FFC107;
+    }
+
+    .pagehead {
+      padding: 150px 8% 60px;
+      text-align: center;
+      background: #111111;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .pagehead h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .pagehead h1 span {
+      background: #FFD700;
+      color: #000;
+    }
+
+    .pagehead p {
+      color: #aaaaaa;
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 18px;
+    }
+
+    .contentsection {
+      padding: 60px 8%;
+      min-height: 50vh;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #111111;
+    }
+
+    th {
+      background: #000000;
+      color: #FFD700;
+      padding: 12px 15px;
+      text-align: left;
+      border: 1px solid #FFD700;
+      font-size: 14px;
+    }
+
+    td {
+      padding: 12px 15px;
+      border: 1px solid #333333;
+      color: #ffffff;
+      font-size: 14px;
+    }
+
+    tr:nth-child(even) {
+      background: #1a1a1a;
+    }
+
+    .risk-low    { color: #00C853; font-weight: 600; }
+    .risk-medium { color: #FFD700; font-weight: 600; }
+    .risk-high   { color: #FF5252; font-weight: 600; }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: #000000;
+      color: #aaaaaa;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: auto;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <h1 onclick="location.href='index.html'">Smart Marketing</h1>
+    <ul>
+      <li><a href="indexhome.html">Home</a></li>
+      <li><a href="market.html">Markets</a></li>
+      <li><a href="investment.html" class="active">Investment</a></li>
+      <li><a href="indices.html">Indexes</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <section class="pagehead">
+    <h1>Available <span>Markets </span>to Invest</h1>
+    <p>Select your preferred market below and start investing immediately.</p>
+  </section>
+
+  <!-- MARKETS TABLE -->
+  <section class="contentsection">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Market / Index</th>
+          <th>Type</th>
+          <th>Risk Level</th>
+          <th>Avg. Annual Return</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="marketBody">
+
+        <!-- EQUITY -->
+        <tr data-type="Equity">
+          <td>US Stock Market (S&amp;P 500)<br><span style="color:#aaaaaa; font-size:12px;">Large-cap US equities via index</span></td>
+          <td>Equity</td>
+          <td><span class="risk-medium">Medium</span></td>
+          <td>~10% / yr</td>
+          <td><button class="btntrd" onclick="location.href='investform.html'">Invest</button></td>
+        </tr>
+
+        <tr data-type="Equity">
+          <td>Indian Equity Market (NSE)<br><span style="color:#aaaaaa; font-size:12px;">BSE / NSE listed Indian stocks</span></td>
+          <td>Equity</td>
+          <td><span class="risk-medium">Medium</span></td>
+          <td>~12% / yr</td>
+          <td><button class="btntrd" onclick="location.href='investform.html'">Invest</button></td>
+        </tr>
+
+        <tr data-type="Equity">
+          <td>Global Emerging Markets<br><span style="color:#aaaaaa; font-size:12px;">Equities from developing economies</span></td>
+          <td>Equity</td>
+          <td><span class="risk-high">High</span></td>
+          <td>~9% / yr</td>
+          <td><button class="btntrd" onclick="location.href='investform.html'">Invest</button></td>
+        </tr>
+
+        <!-- CRYPTO -->
+        <tr data-type="Crypto">
+          <td>Bitcoin (BTC)<br><span style="color:#aaaaaa; font-size:12px;">World's largest cryptocurrency</span></td>
+          <td>Crypto</td>
+          <td><span class="risk-high">Very High</span></td>
+          <td>Volatile</td>
+          <td><button class="btntrd" onclick="location.href='investform.html'">Invest</button></td>
+        </tr>
+
+        <tr data-type="Crypto">
+          <td>Ethereum (ETH)<br><span style="color:#aaaaaa; font-size:12px;">Smart contract blockchain platform</span></td>
+          <td>Crypto</td>
+          <td><span class="risk-high">Very High</span></td>
+          <td>Volatile</td>
+          <td><button class="btntrd" onclick="location.href='investform.html'">Invest</button></td>
+        </tr>
+
+        <tr data-type="Crypto">
+          <td>Altcoin Basket<br><span style="color:#aaaaaa; font-size:12px;">Diversified top 20 altcoins</span></td>
+          <td>Crypto</td>
+          <td><span class="risk-high">Very High</span></td>
+          <td>Volatile</td>
+          <td><button class="btntrd" onclick="location.href='investform.html'">Invest</button></td>
+        </tr>
+
+        <!-- COMMODITY -->
+        <tr data-type="Commodity">
+          <td>Gold<br><span style="color:#aaaaaa; font-size:12px;">Safe-haven precious metal</span></td>
+          <td>Commodity</td>
+          <td><span class="risk-low">Low</span></td>
+          <td>~7% / yr</td>
+          <td><button class="btntrd" onclick="location.href='investform.html'">Invest</button></td>
+        </tr>
+
+        <tr data-type="Commodity">
+          <td>Crude Oil (WTI)<br><span style="color:#aaaaaa; font-size:12px;">Global energy commodity</span></td>
+          <td>Commodity</td>
+          <td><span class="risk-high">High</span></td>
+          <td>Cyclical</td>
+          <td><button class="btntrd" onclick="location.href='investform.html'">Invest</button></td>
+        </tr>
+
+        <tr data-type="Commodity">
+          <td>Silver<br><span style="color:#aaaaaa; font-size:12px;">Industrial &amp; investment metal</span></td>
+          <td>Commodity</td>
+          <td><span class="risk-medium">Medium</span></td>
+          <td>~6% / yr</td>
+          <td><button class="btntrd" onclick="location.href='investform.html'">Invest</button></td>
+        </tr>
+
+        <!-- FOREX -->
+        <tr data-type="Forex">
+          <td>EUR / USD<br><span style="color:#aaaaaa; font-size:12px;">Euro vs US Dollar pair</span></td>
+          <td>Forex</td>
+          <td><span class="risk-medium">Medium</span></td>
+          <td>Spread-based</td>
+          <td><button class="btntrd" onclick="location.href='investform.html'">Invest</button></td>
+        </tr>
+
+        <tr data-type="Forex">
+          <td>USD / INR<br><span style="color:#aaaaaa; font-size:12px;">US Dollar vs Indian Rupee</span></td>
+          <td>Forex</td>
+          <td><span class="risk-medium">Medium</span></td>
+          <td>Spread-based</td>
+          <td><button class="btntrd" onclick="location.href='investform.html'">Invest</button></td>
+        </tr>
+
+        <tr data-type="Forex">
+          <td>GBP / JPY<br><span style="color:#aaaaaa; font-size:12px;">British Pound vs Japanese Yen</span></td>
+          <td>Forex</td>
+          <td><span class="risk-high">High</span></td>
+          <td>Spread-based</td>
+          <td><button class="btntrd" onclick="location.href='investform.html'">Invest</button></td>
+        </tr>
+
+        <!-- BOND -->
+        <tr data-type="Bond">
+          <td>US Treasury Bonds (10Y)<br><span style="color:#aaaaaa; font-size:12px;">US government debt securities</span></td>
+          <td>Bond</td>
+          <td><span class="risk-low">Low</span></td>
+          <td>~4.5% / yr</td>
+          <td><button class="btntrd" onclick="location.href='investform.html'">Invest</button></td>
+        </tr>
+
+        <tr data-type="Bond">
+          <td>Indian Govt. Bonds (G-Sec)<br><span style="color:#aaaaaa; font-size:12px;">Reserve Bank of India securities</span></td>
+          <td>Bond</td>
+          <td><span class="risk-low">Low</span></td>
+          <td>~7% / yr</td>
+          <td><button class="btntrd" onclick="location.href='investform.html'">Invest</button></td>
+        </tr>
+
+        <!-- REIT -->
+        <tr data-type="REIT">
+          <td>US REITs (VNQ)<br><span style="color:#aaaaaa; font-size:12px;">Real estate investment trusts, US</span></td>
+          <td>REIT</td>
+          <td><span class="risk-medium">Medium</span></td>
+          <td>~8% / yr</td>
+          <td><button class="btntrd" onclick="location.href='investform.html'">Invest</button></td>
+        </tr>
+
+        <tr data-type="REIT">
+          <td>Indian REITs<br><span style="color:#aaaaaa; font-size:12px;">Embassy, Mindspace &amp; Nexus REITs</span></td>
+          <td>REIT</td>
+          <td><span class="risk-medium">Medium</span></td>
+          <td>~7% / yr</td>
+          <td><button class="btntrd" onclick="location.href='investform.html'">Invest</button></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Smart Marketing | Investing involves risk. Never invest money you cannot afford to lose.</p>
+  </footer>
+
+
+
+</body>
+</html>

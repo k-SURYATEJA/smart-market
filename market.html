@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Markets | Smart Marketing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #111111;
+  color: #ffffff;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+  background: rgba(0, 0, 0, 0.95);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  top: 0;
+}
+
+nav h1 {
+  color: #FFD700;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+nav h1:hover {
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  align-items: center;
+}
+
+nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+nav ul li a:hover {
+  color: #FFD700;
+}
+
+.pagehead {
+  padding: 150px 8% 60px;
+  text-align: center;
+  background: #111111;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pagehead h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.pagehead h1 span {
+  background: #FFD700;
+  color:#000000
+}
+
+.pagehead p {
+  color: #aaaaaa;
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+.section {
+  padding: 80px 8%;
+}
+
+.sectiontitle {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+.sectiontitle {
+  border-left: 4px solid #FFD700;
+  padding-left: 15px;
+}
+
+.positive {
+  color: #FFD700;
+  font-weight: 700;
+}
+
+.negative {
+  color: #ff4757;
+  font-weight: 700;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.grid .box {
+  flex: 1 1 250px;
+}
+
+.box {
+  background: rgba(255, 215, 0, 0.05);
+  padding: 40px 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+}
+
+.box:hover {
+  background: rgba(255, 215, 0, 0.07);
+  border-color: rgba(255, 215, 0, 0.4);
+}
+
+.box h3 {
+  margin-bottom: 15px;
+  color: #FFC107;
+  font-size: 22px;
+}
+
+.box p {
+  color: #aaaaaa;
+  line-height: 1.6;
+}
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #111111;
+}
+
+th {
+  background: #000000;
+  color: #FFD700;
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #FFD700;
+  font-size: 14px;
+}
+
+td {
+  padding: 12px 15px;
+  border: 1px solid #333333;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+tr:nth-child(even) {
+  background: #1a1a1a;
+}
+
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  background: #000000;
+  color: #aaaaaa;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: auto;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+    <h1 onclick="location.href='indexhome.html'">Smart Marketing</h1>
+    <ul>
+        <li><a href="indexhome.html">Home</a></li>
+         <li><a style="color: #FFD700;" href="market.html">Markets</a></li>
+          <li><a href="investmentup.html">Investment</a></li>
+        <li><a href="indices.html">Indices</a></li>
+    </ul>
+</nav>
+
+<section class="pagehead">
+    <h1>Live <span>Market</span> Overview</h1>
+    <p>Track top gainers, monitor your watchlist, and analyze the market.</p>
+</section>
+
+<section class="section">
+    <h2 class="sectiontitle">Major Indina Markets & Movers</h2>
+    <div class="grid">
+        <div class="box">
+            <div class="cardheader">
+                <h3>NIFTY 50</h3>
+                <span class="positive">+0.65%</span>
+            </div>
+            <h2>&#8377;22,450.15</h2>
+            <p class="muted">Volume: 310M</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>BANK NIFTY</h3>
+                <span class="positive">+1.10%</span>
+            </div>
+            <h2>&#8377;48,120.30</h2>
+            <p class="muted">Volume: 185M</p>
+        </div>
+
+<div class="box">
+            <div class="cardheader">
+                <h3>INDIA VIX</h3>
+                <span class="positive">+1.10%</span>
+            </div>
+            <h2>&#8377;48,120.30</h2>
+            <p class="muted">Volume: 185M</p>
+        </div>
+
+        <div class="box">
+            <div class="cardheader">
+                <h3>SENSEX</h3>
+                <span class="positive">+0.58%</span>
+            </div>
+            <h2>&#8377;73,950.40</h2>
+            <p class="muted">Volume: 12M</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>ICICI BANK </h3>
+                <span class="negative">-3.20%</span>
+            </div>
+            <h2>&#8377;11.85</h2>
+            <p class="muted">Volatility Index</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>Reliance</h3>
+                <span class="positive">+4.25%</span>
+            </div>
+            <h2>&#8377;2,875.20</h2>
+            <p class="muted">Volume: 45.2M</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>HDFC Bank</h3>
+                <span class="negative">-2.10%</span>
+            </div>
+            <h2>&#8377;1,470.85</h2>
+            <p class="muted">Volume: 82.1M</p>
+        </div>
+        <div class="box">
+            <div class="cardheader">
+                <h3>SBI Bank</h3>
+                <span class="positive">+1.80%</span>
+            </div>
+            <h2>&#8377;750.40</h2>
+            <p class="muted">Volume: 12.5M</p>
+        </div>
+    </div>
+
+    <h2 class="sectiontitle">Market Screener</h2>
+    
+        <table>
+            <thead>
+                <tr>
+                    <th>Asset</th>
+                    <th>Last Price</th>
+                    <th>24h Change</th>
+                    <th>Market Cap</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Apple Inc. (AAPL)</td>
+                    <td>$173.50</td>
+                    <td class="positive">+1.12%</td>
+                    <td>$2.68T</td>
+                </tr>
+                <tr>
+                    <td>Microsoft Corp. (MSFT)</td>
+                    <td>$405.20</td>
+                    <td class="positive">+0.85%</td>
+                    <td>$3.01T</td>
+                </tr>
+                <tr>
+                    <td>NVIDIA Corp. (NVDA)</td>
+                    <td>$885.10</td>
+                    <td class="positive">+3.45%</td>
+                    <td>$2.20T</td>
+                </tr>
+                <tr>
+                    <td>Netflix Inc. (NFLX)</td>
+                    <td>$612.30</td>
+                    <td class="negative">-1.45%</td>
+                    <td>$264B</td>
+                </tr>
+                <tr>
+                    <td>Tata Consultancy (TCS)</td>
+                    <td>â‚¹3,980.00</td>
+                    <td class="positive">+0.50%</td>
+                    <td>â‚¹14.5T</td>
+                </tr>
+                <tr>
+                    <td>Infosys Ltd. (INFY)</td>
+                    <td>â‚¹1,485.60</td>
+                    <td class="negative">-0.35%</td>
+                    <td>â‚¹6.1T</td>
+                </tr>
+                <tr>
+                    <td>ICICI Bank (ICICIBANK)</td>
+                    <td>â‚¹1,120.45</td>
+                    <td class="positive">+1.25%</td>
+                    <td>â‚¹7.8T</td>
+                </tr>
+                <tr>
+                    <td>Tesla Inc. (TSLA)</td>
+                    <td>$175.22</td>
+                    <td class="negative">-2.15%</td>
+                    <td>$550B</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+<footer>
+    <p>Â© 2026 Smart Marketing | Data is delayed by 15 minutes. Trading involves high risk.</p>
+</footer>
+
+</body>
+</html>
+
