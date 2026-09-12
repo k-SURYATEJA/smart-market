@@ -156,13 +156,22 @@
 
   <!-- NAV -->
   <nav>
-    <h1 onclick="location.href='index.html'">Smart Marketing</h1>
-    <ul>
-      <li><a href="indexhome.html">Home</a></li>
-      <li><a href="market.html">Markets</a></li>
-      <li><a href="investment.html" class="active">Investment</a></li>
-      <li><a href="indices.html">Indexes</a></li>
-    </ul>
+    <div style="display: flex; align-items: center; gap: 35px;">
+        <a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+            <span style="background: #FFD700; color: #000; font-weight: 900; padding: 6px 10px; border-radius: 8px; font-size: 18px;">📈 SM</span>
+            <span style="color: #ffffff; font-size: 22px; font-weight: 700;">Smart<span style="color: #FFD700;">Market</span></span>
+        </a>
+        <ul style="display: flex; list-style: none; gap: 20px; align-items: center; margin: 0; padding: 0;">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="market.html">Markets</a></li>
+          <li><a href="indices.html">Indices</a></li>
+          <li><a href="investmentup.html" style="color: #FFD700;">Investments</a></li>
+        </ul>
+    </div>
+    <div class="nav-auth-container" style="margin-left: auto;">
+        <button class="btnlog" onclick="location.href='loginupsm.html'">Login / Signup</button>
+    </div>
   </nav>
 
   <!-- PAGE HEADER -->

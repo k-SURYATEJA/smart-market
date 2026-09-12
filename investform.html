@@ -1,403 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Marketing | Invest Now</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+    <title>SmartMarket | SIP Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+        :root {
+            --bg-dark: #111111;
+            --sidebar-bg: #000000;
+            --card-bg: #1a1a1a;
+            --card-border: rgba(255, 215, 0, 0.15);
+            --accent: #FFD700;
+            --accent-hover: #e6c200;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
         }
 
-        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--bg-dark); color: var(--text-main); min-height: 100vh; }
 
-        body {
-            background: #111111;
-            color: #ffffff;
+        header {
+            height: 65px;
+            background: var(--sidebar-bg);
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+        }
+
+        .header-left { display: flex; align-items: center; gap: 20px; }
+        .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .brand-icon { background: var(--accent); color: #000; font-weight: 900; padding: 6px 10px; border-radius: 8px; font-size: 16px; }
+        .brand-name { font-size: 19px; font-weight: 700; color: #fff; }
+        .brand-name span { color: var(--accent); }
+
+        .status-badge {
+            background: rgba(0, 240, 181, 0.1);
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 240, 181, 0.2);
+        }
+
+        .user-top-info { display: flex; align-items: center; gap: 20px; }
+        .user-tag { font-size: 13px; font-weight: 600; color: var(--text-muted); }
+        .btn-signout { background: transparent; border: 1px solid #363a43; color: #ccc; padding: 8px 18px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; }
+
+        .app-container { display: flex; margin-top: 65px; min-height: calc(100vh - 65px); }
+
+        sidebar {
+            width: 250px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--card-border);
+            padding: 30px 16px;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* ── NAV ── */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background: rgba(0, 0, 0, 0.95);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            top: 0;
-        }
-
-        nav h1 {
-            color: #FFD700;
-            cursor: pointer;
-            font-size: 24px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
             gap: 30px;
-            align-items: center;
-            margin-left: auto;
-            margin-right: 40px;
+            position: fixed;
+            top: 65px; bottom: 0; left: 0;
+            overflow-y: auto;
         }
 
-        nav ul li a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 400;
-        }
+        .menu-title { font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 1.2px; margin-bottom: 12px; padding-left: 14px; text-transform: uppercase; }
+        .menu-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+        .menu-item a { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 10px; color: #9aa1b0; text-decoration: none; font-weight: 600; font-size: 14px; }
+        .menu-item a:hover { color: #fff; background: rgba(255,255,255,0.04); }
+        .menu-item.active a { background: var(--accent); color: #000; font-weight: 700; }
 
-        nav ul li a:hover, nav ul li a.active {
-            color: #FFD700;
-        }
+        main { margin-left: 250px; flex: 1; padding: 40px; display: flex; flex-direction: column; align-items: center; }
 
-        /* ── PAGE WRAPPER ── */
-        .page {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 120px 8% 80px;
-        }
-
-        /* ── CARD ── */
-        .card {
-            background: #1a1a1a;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 8px;
-            padding: 60px 55px;
+        .form-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 40px;
+            border-radius: 12px;
             width: 100%;
-            max-width: 520px;
+            max-width: 500px;
         }
 
-        /* Back link */
-        .back-link {
-            display: inline-block;
-            color: #aaaaaa;
-            text-decoration: none;
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
+        .form-card h2 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .form-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 25px; }
 
-        .back-link:hover { color: #FFD700; }
+        .field-group { margin-bottom: 20px; }
+        .field-group label { display: block; font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; }
+        .field-group input, .field-group select { width: 100%; padding: 12px 14px; background: #111215; border: 1px solid var(--card-border); border-radius: 8px; color: #fff; font-size: 14px; font-weight: 600; }
+        .field-group input:focus, .field-group select:focus { border-color: var(--accent); outline: none; }
 
-        /* Market info banner */
-        .market-banner {
-            background: rgba(255, 215, 0, 0.07);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 8px;
-            padding: 18px 20px;
-            margin-bottom: 35px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .btn-submit { width: 100%; background: var(--accent); color: #000; border: none; padding: 14px; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; margin-top: 10px; }
 
-        .market-banner .market-label {
-            font-size: 13px;
-            color: #aaaaaa;
-            margin-bottom: 4px;
-        }
-
-        .market-banner .market-name {
-            font-size: 18px;
-            font-weight: 700;
-            color: #FFD700;
-        }
-
-        .market-banner .type-badge {
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 600;
-            background: rgba(255, 215, 0, 0.12);
-            color: #FFD700;
-            border: 1px solid rgba(255, 215, 0, 0.25);
-            white-space: nowrap;
-        }
-
-        /* Heading */
-        .card h2 {
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
-
-        .card p.subtitle {
-            color: #aaaaaa;
-            font-size: 14px;
-            margin-bottom: 35px;
-        }
-
-        /* Form fields */
-        .field {
-            margin-bottom: 22px;
-        }
-
-        .field label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: #aaaaaa;
-            margin-bottom: 8px;
-        }
-
-        .field input,
-        .field select {
-            width: 100%;
-            padding: 13px 16px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: #ffffff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-            outline: none;
-        }
-
-        .field select option {
-            background: #1a1a1a;
-            color: #ffffff;
-        }
-
-        .field input:focus,
-        .field select:focus {
-            border-color: #FFD700;
-        }
-
-        .field input::placeholder {
-            color: #555555;
-        }
-
-        /* Two columns side by side */
-        .field-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        /* Submit button */
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: #FFD700;
-            color: #000000;
-            border: none;
-            border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .submit-btn:hover { background: #FFC107; }
-
-        /* ── SUCCESS STATE ── */
-        .success-view {
-            display: none;
-            text-align: center;
-        }
-
-        .success-view .check {
-            font-size: 64px;
-            margin-bottom: 20px;
-        }
-
-        .success-view h2 {
-            font-size: 26px;
-            color: #00C853;
-            margin-bottom: 12px;
-        }
-
-        .success-view p {
-            color: #aaaaaa;
-            font-size: 14px;
-            line-height: 1.7;
-            margin-bottom: 30px;
-        }
-
-        .success-view a {
-            display: inline-block;
-            padding: 12px 30px;
-            background: #FFD700;
-            color: #000;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 14px;
-        }
-
-        .success-view a:hover { background: #FFC107; }
-
-        /* ── FOOTER ── */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            background: #000000;
-            color: #aaaaaa;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .footerlinks {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .footerlinks a {
-            color: #aaaaaa;
-            text-decoration: none;
-        }
-
-        .footerlinks a:hover { color: #FFD700; }
-
-
+        footer { margin-left: 250px; padding: 25px 40px; background: var(--sidebar-bg); border-top: 1px solid var(--card-border); color: var(--text-muted); font-size: 13px; text-align: center; }
     </style>
 </head>
-
 <body>
 
-    <!-- NAV -->
-    <nav>
-        <h1 onclick="location.href='index.html'">Smart Marketing</h1>
-        <ul>
-            <li><a href="indexhome.html">Home</a></li>
-            <li><a href="market.html">Markets</a></li>
-            <li><a href="investment.html" class="active">Investment</a></li>
-            <li><a href="indices.html">Indexes</a></li>
-        </ul>
-    </nav>
+    <header>
+        <div class="header-left">
+            <a href="dashboard.html" class="brand-logo">
+                <span class="brand-icon">📈</span>
+                <span class="brand-name">Smart<span>Market</span></span>
+            </a>
+            <span class="status-badge">SIP CALCULATOR</span>
+        </div>
+        <div class="user-top-info">
+            <div class="user-tag">ACTIVE TRADER: <strong id="top-username">surya</strong></div>
+            <button class="btn-signout" id="top-logout-btn">Sign Out</button>
+        </div>
+    </header>
 
-    <!-- MAIN PAGE -->
-    <div class="page">
-        <div class="card">
+    <div class="app-container">
+        <sidebar>
+            <div class="menu-section">
+                <div class="menu-title">Main Menu</div>
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a href="index.html"><span>🏠</span> Home View</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="dashboard.html"><span>⚡</span> Dashboard</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="journal.html"><span>📖</span> Trade Journal</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="market.html"><span>📈</span> Markets</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="indices.html"><span>🏛️</span> Indices</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="investmentup.html"><span>💰</span> Investments</a>
+                    </li>
+                </ul>
+            </div>
 
-            <!-- FORM VIEW -->
-            <div id="formView">
+            <div class="menu-section">
+                <div class="menu-title">Tools & Calculators</div>
+                <ul class="menu-list">
+                    <li class="menu-item active">
+                        <a href="investform.html"><span>🧮</span> SIP Calculator</a>
+                    </li>
+                </ul>
+            </div>
+        </sidebar>
 
-                <a class="back-link" href="startinvesting.html">← Back to Markets</a> 
-                
+        <main>
+            <div class="form-card" id="formView">
+                <h2>SIP Investment Plan</h2>
+                <p>Calculate your estimated returns for periodic market contributions.</p>
 
-                <h2>Investment Details</h2>
-                <p class="subtitle">Fill in the details below to place your investment.</p>
-
-                <!-- Full Name -->
-                <div class="field">
-                    <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" placeholder="e.g. Ravi Kumar" />
+                <div class="field-group">
+                    <label>Full Name</label>
+                    <input type="text" id="fullName" placeholder="Surya Teja">
                 </div>
 
-                <!-- Email -->
-                <div class="field">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="e.g. ravi@email.com" />
+                <div class="field-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" placeholder="surya@example.com">
                 </div>
 
-                <!-- Amount + Duration side by side -->
-                <div class="field-row">
-                    <div class="field">
-                        <label for="amount">Amount (₹)</label>
-                        <input type="number" id="amount" placeholder="e.g. 10000" min="100" />
-                    </div>
-                    <div class="field">
-                        <label for="duration">Duration</label>
-                        <select id="duration">
-                            <option value="" disabled selected>Select</option>
-                            <option value="3 Months">3 Months</option>
-                            <option value="6 Months">6 Months</option>
-                            <option value="1 Year">1 Year</option>
-                            <option value="3 Years">3 Years</option>
-                            <option value="5 Years">5 Years</option>
-                            <option value="10 Years">10 Years</option>
-                            <option value="Long-term">Long-term</option>
-                        </select>
-                    </div>
+                <div class="field-group">
+                    <label>Monthly Contribution (₹)</label>
+                    <input type="number" id="amount" placeholder="5000" min="100">
                 </div>
 
-                <!-- Risk Appetite -->
-                <div class="field">
-                    <label for="risk">Risk Appetite</label>
-                    <select id="risk">
-                        <option value="" disabled selected>Select your risk level</option>
-                        <option value="Conservative">Conservative — I prefer safety</option>
-                        <option value="Moderate">Moderate — Balanced approach</option>
-                        <option value="Aggressive">Aggressive — I want maximum growth</option>
+                <div class="field-group">
+                    <label>Investment Tenure</label>
+                    <select id="duration">
+                        <option value="1 Year">1 Year</option>
+                        <option value="3 Years">3 Years</option>
+                        <option value="5 Years">5 Years</option>
+                        <option value="10 Years">10 Years</option>
                     </select>
                 </div>
 
-                <button class="submit-btn" onclick="submitForm()">Confirm Investment →</button>
+                <div class="field-group">
+                    <label>Risk Appetite</label>
+                    <select id="risk">
+                        <option value="Moderate Risk">Moderate Growth (12% Est. Return)</option>
+                        <option value="High Growth Equity">High Growth Equity (15% Est. Return)</option>
+                        <option value="Conservative Debt">Conservative Debt (8% Est. Return)</option>
+                    </select>
+                </div>
 
+                <button class="btn-submit" onclick="submitForm()">Calculate Plan ➔</button>
             </div>
 
-            <!-- SUCCESS VIEW -->
-            <div class="success-view" id="successView">
-                <div class="check">✅</div>
-                <h2>Investment Placed!</h2>
-                <p id="successMsg">Your investment has been submitted successfully.</p>
-                <a href="startinvesting.html">← Back to Markets</a>
+            <div class="form-card" id="successView" style="display: none; text-align: center;">
+                <div style="font-size: 54px; margin-bottom: 15px;">✅</div>
+                <h2>Plan Created!</h2>
+                <p id="successMsg" style="margin-bottom: 25px;">Your investment calculation has been saved.</p>
+                <a href="dashboard.html" class="btn-submit" style="text-decoration: none; display: inline-block;">Return to Dashboard ➔</a>
             </div>
-
-        </div>
+        </main>
     </div>
 
-    <!-- FOOTER -->
     <footer>
-        <div class="footerlinks">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Risk Disclosure</a>
-            <a href="#">Contact Us</a>
-        </div>
-        <p>&copy; 2026 Smart Marketing | All Rights Reserved. Investing involves risk.</p>
+        <p>© 2026 SmartMarket | Investment Calculator</p>
     </footer>
 
+    <script src="app.js"></script>
     <script>
+        const user = SmartMarket.getUser();
+        if (user) {
+            document.getElementById('top-username').innerText = user.name.toLowerCase();
+            document.getElementById('fullName').value = user.name;
+            document.getElementById('email').value = user.email;
+        }
 
-        // Read market name and type from URL
-        const params     = new URLSearchParams(window.location.search);
-        const marketName = params.get('market') || ' Market';
+        const logoutBtn = document.getElementById('top-logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                SmartMarket.removeToken();
+                alert('Logged out successfully.');
+                window.location.href = 'index.html';
+            });
+        }
 
-      
-
-        // Submit form
-        function submitForm() {
+        async function submitForm() {
             const name     = document.getElementById('fullName').value.trim();
             const email    = document.getElementById('email').value.trim();
             const amount   = document.getElementById('amount').value.trim();
             const duration = document.getElementById('duration').value;
-            const risk     = document.getElementById('risk').value;
 
             if (!name) { alert('Please enter your full name.'); return; }
             if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-            if (!amount || isNaN(amount) || Number(amount) < 100) { alert('Please enter a valid amount (minimum ₹100).'); return; }
-            if (!duration) { alert('Please select an investment duration.'); return; }
-            if (!risk) { alert('Please select your risk appetite.'); return; }
+            if (!amount || isNaN(amount) || Number(amount) < 100) { alert('Please enter a valid amount.'); return; }
 
             document.getElementById('successMsg').textContent =
-                name + ', your investment of ₹' + Number(amount).toLocaleString('en-IN') +
-                ' in ' + marketName + ' for ' + duration +
-                ' has been placed successfully. We will reach you at ' + email + ' shortly.';
+                name + ', your SIP plan of ₹' + Number(amount).toLocaleString('en-IN') +
+                '/month for ' + duration + ' has been calculated successfully.';
 
             document.getElementById('formView').style.display   = 'none';
             document.getElementById('successView').style.display = 'block';
         }
-
     </script>
-
 </body>
 </html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartMarket | Trade Journal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #111111;
+            --sidebar-bg: #000000;
+            --card-bg: #1a1a1a;
+            --card-border: rgba(255, 215, 0, 0.15);
+            --accent: #FFD700;
+            --accent-hover: #e6c200;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--bg-dark); color: var(--text-main); min-height: 100vh; }
+
+        /* ── HEADER ── */
+        header {
+            height: 65px;
+            background: var(--sidebar-bg);
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+        }
+
+        .header-left { display: flex; align-items: center; gap: 20px; }
+        .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .brand-icon { background: var(--accent); color: #000; font-weight: 900; padding: 6px 10px; border-radius: 8px; font-size: 16px; }
+        .brand-name { font-size: 19px; font-weight: 700; color: #fff; }
+        .brand-name span { color: var(--accent); }
+
+        .status-badge {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .user-top-info { display: flex; align-items: center; gap: 20px; }
+        .user-tag { font-size: 13px; font-weight: 600; color: var(--text-muted); }
+        .btn-signout { background: transparent; border: 1px solid #363a43; color: #ccc; padding: 8px 18px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; }
+        .btn-signout:hover { border-color: #ff5252; color: #ff5252; }
+
+        /* ── LAYOUT & SIDEBAR ── */
+        .app-container { display: flex; margin-top: 65px; min-height: calc(100vh - 65px); }
+
+        sidebar {
+            width: 250px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--card-border);
+            padding: 30px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            position: fixed;
+            top: 65px; bottom: 0; left: 0;
+            overflow-y: auto;
+        }
+
+        .menu-title { font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 1.2px; margin-bottom: 12px; padding-left: 14px; text-transform: uppercase; }
+        .menu-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+        .menu-item a { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 10px; color: #9aa1b0; text-decoration: none; font-weight: 600; font-size: 14px; transition: all 0.2s; }
+        .menu-item a:hover { color: #fff; background: rgba(255,255,255,0.04); }
+        .menu-item.active a { background: var(--accent); color: #000; font-weight: 700; }
+
+        /* ── MAIN CONTENT ── */
+        main { margin-left: 250px; flex: 1; padding: 40px; }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .page-title h1 { font-size: 30px; font-weight: 700; }
+        .page-title p { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
+
+        .btn-add-journal {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-add-journal:hover { background: var(--accent-hover); }
+
+        /* ── JOURNAL CARDS GRID ── */
+        .journal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 25px;
+        }
+
+        .journal-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .journal-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 215, 0, 0.4);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .trade-tag {
+            background: #000;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid #333;
+        }
+
+        .action-pill {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .action-buy { background: rgba(0, 230, 118, 0.15); color: #00e676; border: 1px solid rgba(0, 230, 118, 0.3); }
+        .action-sell { background: rgba(255, 82, 82, 0.15); color: #ff5252; border: 1px solid rgba(255, 82, 82, 0.3); }
+
+        .journal-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .reason-box {
+            background: #111215;
+            border-left: 3px solid var(--accent);
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            font-size: 13px;
+            color: #d1d5db;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .chart-img-container {
+            width: 100%;
+            height: 190px;
+            background: #0d0e11;
+            border: 1px solid #2a2d36;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .chart-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .btn-delete-jnl {
+            background: transparent;
+            border: none;
+            color: #ff5252;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .btn-delete-jnl:hover { text-decoration: underline; }
+
+        /* ── MODAL DIALOG ── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-box {
+            background: var(--card-bg);
+            border: 1px solid var(--accent);
+            border-radius: 14px;
+            width: 100%;
+            max-width: 540px;
+            padding: 30px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-title { font-size: 22px; font-weight: 700; color: var(--accent); margin-bottom: 20px; }
+
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            background: #111215;
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); outline: none; }
+
+        .img-preview {
+            width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+            border-radius: 6px;
+            margin-top: 8px;
+            display: none;
+            border: 1px solid var(--card-border);
+        }
+
+        .modal-btns { display: flex; gap: 12px; margin-top: 25px; }
+        .btn-confirm { flex: 1; padding: 12px; background: var(--accent); color: #000; border: none; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; }
+        .btn-cancel { flex: 1; padding: 12px; background: transparent; border: 1px solid #444; color: #ccc; border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer; }
+
+        footer { margin-left: 250px; padding: 25px 40px; background: var(--sidebar-bg); border-top: 1px solid var(--card-border); color: var(--text-muted); font-size: 13px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <!-- TOP HEADER -->
+    <header>
+        <div class="header-left">
+            <a href="dashboard.html" class="brand-logo">
+                <span class="brand-icon">📈</span>
+                <span class="brand-name">Smart<span>Market</span></span>
+            </a>
+            <span class="status-badge">TRADE JOURNAL</span>
+        </div>
+
+        <div class="user-top-info">
+            <div class="user-tag">ACTIVE TRADER: <strong id="top-username">surya</strong></div>
+            <button class="btn-signout" id="top-logout-btn">Sign Out</button>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <!-- LEFT VERTICAL SIDEBAR -->
+        <sidebar>
+            <div class="menu-section">
+                <div class="menu-title">Main Menu</div>
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a href="index.html"><span>🏠</span> Home View</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="dashboard.html"><span>⚡</span> Dashboard</a>
+                    </li>
+                    <li class="menu-item active">
+                        <a href="journal.html"><span>📖</span> Trade Journal</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="market.html"><span>📈</span> Markets</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="indices.html"><span>🏛️</span> Indices</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="investmentup.html"><span>💰</span> Investments</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="menu-section">
+                <div class="menu-title">Tools & Calculators</div>
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a href="investform.html"><span>🧮</span> SIP Calculator</a>
+                    </li>
+                </ul>
+            </div>
+        </sidebar>
+
+        <!-- MAIN CONTENT AREA -->
+        <main>
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>Trade Journal & Strategy Notes</h1>
+                    <p>Document trade setups, attach chart screenshots, and detail the technical rationale behind your trades.</p>
+                </div>
+                <button class="btn-add-journal" onclick="openJournalModal()">+ New Journal Entry</button>
+            </div>
+
+            <!-- JOURNAL ENTRIES GRID -->
+            <div class="journal-grid" id="journal-grid-container">
+                <div style="color:var(--text-muted); grid-column: 1/-1; padding: 40px 0; text-align: center;">
+                    Loading trade journal entries...
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- NEW JOURNAL ENTRY MODAL -->
+    <div class="modal-overlay" id="journal-modal">
+        <div class="modal-box">
+            <div class="modal-title">New Trade Journal Entry</div>
+            
+            <div class="form-group">
+                <label>Trade Setup Title</label>
+                <input type="text" id="jnl-title" placeholder="e.g. NIFTY 50 Morning Breakout Strategy">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="form-group">
+                    <label>Stock / Symbol</label>
+                    <input type="text" id="jnl-symbol" placeholder="RELIANCE / NIFTY">
+                </div>
+
+                <div class="form-group">
+                    <label>Action</label>
+                    <select id="jnl-action">
+                        <option value="BUY">BUY / LONG</option>
+                        <option value="SELL">SELL / SHORT</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Outcome / P&L Result</label>
+                <select id="jnl-outcome">
+                    <option value="Profit Target Hit (Win)">Profit Target Hit (Win)</option>
+                    <option value="Stop Loss Hit (Loss)">Stop Loss Hit (Loss)</option>
+                    <option value="Breakeven / Open">Breakeven / Open</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Trade Rationale & Strategy Details</label>
+                <textarea id="jnl-reason" rows="4" placeholder="Describe the technical trigger, RSI/MACD setup, support/resistance level, or news reason for taking this trade..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Attach Chart Screenshot / Image</label>
+                <input type="file" id="jnl-file-input" accept="image/*" onchange="previewChartImage(event)">
+                <img id="jnl-img-preview" class="img-preview" alt="Chart Preview">
+            </div>
+
+            <div class="modal-btns">
+                <button class="btn-confirm" onclick="saveJournalEntry()">Save Journal Entry</button>
+                <button class="btn-cancel" onclick="closeJournalModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FULLSCREEN IMAGE VIEWER MODAL -->
+    <div class="modal-overlay" id="img-viewer-modal" onclick="closeImgViewer()">
+        <div style="max-width: 90%; max-height: 90%;">
+            <img id="full-chart-img" src="" style="width: 100%; height: auto; border-radius: 10px; border: 2px solid var(--accent);" alt="Full Chart">
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 SmartMarket | Trade Journal Log</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        let currentChartBase64 = '';
+
+        async function loadJournals() {
+            const user = SmartMarket.getUser();
+            if (user) {
+                document.getElementById('top-username').innerText = user.name.toLowerCase();
+            }
+
+            const logoutBtn = document.getElementById('top-logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', () => {
+                    SmartMarket.removeToken();
+                    alert('Logged out successfully.');
+                    window.location.href = 'index.html';
+                });
+            }
+
+            try {
+                const data = await SmartMarket.fetchAPI('/api/journal');
+                const container = document.getElementById('journal-grid-container');
+
+                if (!data.journals || data.journals.length === 0) {
+                    container.innerHTML = `
+                        <div style="color:var(--text-muted); grid-column: 1/-1; background: var(--card-bg); padding: 50px; border-radius: 14px; border: 1px dashed var(--card-border); text-align: center;">
+                            <div style="font-size: 40px; margin-bottom: 12px;">📖</div>
+                            <h3 style="color:#fff; margin-bottom: 8px;">No Journal Entries Yet</h3>
+                            <p style="margin-bottom: 20px;">Document your trade setups and attach chart screenshots to track your strategy performance over time.</p>
+                            <button class="btn-add-journal" onclick="openJournalModal()">+ Create First Entry</button>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = data.journals.map(j => {
+                    const actionClass = j.action === 'BUY' ? 'action-buy' : 'action-sell';
+                    const dateStr = new Date(j.timestamp).toLocaleDateString([], {month: 'short', day: 'numeric', year: 'numeric'});
+
+                    return `
+                        <div class="journal-card">
+                            <div class="card-top">
+                                <div>
+                                    <span class="trade-tag">${j.symbol || 'NIFTY'}</span>
+                                    <span class="action-pill ${actionClass}" style="margin-left: 6px;">${j.action}</span>
+                                </div>
+                                <span style="font-size: 12px; color: var(--text-muted);">${dateStr}</span>
+                            </div>
+
+                            <div class="journal-title">${j.title}</div>
+                            
+                            <div class="reason-box">" ${j.reason} "</div>
+
+                            ${j.image ? `
+                                <div class="chart-img-container" onclick="openImgViewer('${j.image}')">
+                                    <img src="${j.image}" alt="Trade Chart Screenshot">
+                                </div>
+                            ` : ''}
+
+                            <div class="card-footer">
+                                <span style="color: var(--accent); font-weight: 600;">Outcome: ${j.outcome || 'Logged'}</span>
+                                <button class="btn-delete-jnl" onclick="deleteJournal('${j.id}')">Delete</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+            } catch (err) {
+                console.error('Journal fetch error:', err);
+            }
+        }
+
+        function openJournalModal() {
+            const user = SmartMarket.getUser();
+            if (!user) {
+                alert('⚠️ Please log in to create trade journal entries.');
+                window.location.href = 'loginupsm.html';
+                return;
+            }
+            document.getElementById('journal-modal').style.display = 'flex';
+        }
+
+        function closeJournalModal() {
+            document.getElementById('journal-modal').style.display = 'none';
+            document.getElementById('jnl-title').value = '';
+            document.getElementById('jnl-reason').value = '';
+            document.getElementById('jnl-img-preview').style.display = 'none';
+            currentChartBase64 = '';
+        }
+
+        function previewChartImage(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                currentChartBase64 = e.target.result;
+                const previewImg = document.getElementById('jnl-img-preview');
+                previewImg.src = currentChartBase64;
+                previewImg.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function saveJournalEntry() {
+            const title = document.getElementById('jnl-title').value.trim();
+            const symbol = document.getElementById('jnl-symbol').value.trim() || 'NIFTY 50';
+            const action = document.getElementById('jnl-action').value;
+            const outcome = document.getElementById('jnl-outcome').value;
+            const reason = document.getElementById('jnl-reason').value.trim();
+
+            if (!title || !reason) {
+                alert('Please fill out both the Title and the Trade Setup Reason.');
+                return;
+            }
+
+            try {
+                await SmartMarket.fetchAPI('/api/journal', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        title,
+                        symbol,
+                        action,
+                        outcome,
+                        reason,
+                        image: currentChartBase64
+                    })
+                });
+
+                alert('✅ Trade Journal Entry Saved!');
+                closeJournalModal();
+                loadJournals();
+            } catch (err) {
+                alert('❌ Failed to save journal entry: ' + err.message);
+            }
+        }
+
+        async function deleteJournal(id) {
+            if (!confirm('Are you sure you want to delete this journal entry?')) return;
+            try {
+                await SmartMarket.fetchAPI(`/api/journal/${id}`, { method: 'DELETE' });
+                loadJournals();
+            } catch (err) {
+                alert('Failed to delete entry: ' + err.message);
+            }
+        }
+
+        function openImgViewer(imgSrc) {
+            document.getElementById('full-chart-img').src = imgSrc;
+            document.getElementById('img-viewer-modal').style.display = 'flex';
+        }
+
+        function closeImgViewer() {
+            document.getElementById('img-viewer-modal').style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', loadJournals);
+    </script>
+</body>
+</html>

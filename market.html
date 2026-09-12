@@ -3,351 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Markets | Smart Marketing</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>SmartMarket | Live Markets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-dark: #111111;
+            --sidebar-bg: #000000;
+            --card-bg: #1a1a1a;
+            --card-border: rgba(255, 215, 0, 0.15);
+            --accent: #FFD700;
+            --accent-hover: #e6c200;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--bg-dark); color: var(--text-main); min-height: 100vh; }
 
+        header {
+            height: 65px;
+            background: var(--sidebar-bg);
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+        }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
+        .header-left { display: flex; align-items: center; gap: 20px; }
+        .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .brand-icon { background: var(--accent); color: #000; font-weight: 900; padding: 6px 10px; border-radius: 8px; font-size: 16px; }
+        .brand-name { font-size: 19px; font-weight: 700; color: #fff; }
+        .brand-name span { color: var(--accent); }
 
-html {
-  scroll-behavior: smooth;
-}
+        .status-badge {
+            background: rgba(0, 240, 181, 0.1);
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 240, 181, 0.2);
+        }
 
-body {
-  background: #111111;
-  color: #ffffff;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+        .user-top-info { display: flex; align-items: center; gap: 20px; }
+        .user-tag { font-size: 13px; font-weight: 600; color: var(--text-muted); }
+        .btn-signout { background: transparent; border: 1px solid #363a43; color: #ccc; padding: 8px 18px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 8%;
-  background: rgba(0, 0, 0, 0.95);
-  position: fixed;
-  width: 100%;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  top: 0;
-}
+        .app-container { display: flex; margin-top: 65px; min-height: calc(100vh - 65px); }
 
-nav h1 {
-  color: #FFD700;
-  cursor: pointer;
-  font-size: 24px;
-}
+        sidebar {
+            width: 250px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--card-border);
+            padding: 30px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            position: fixed;
+            top: 65px; bottom: 0; left: 0;
+            overflow-y: auto;
+        }
 
-nav h1:hover {
-}
+        .menu-title { font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 1.2px; margin-bottom: 12px; padding-left: 14px; text-transform: uppercase; }
+        .menu-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+        .menu-item a { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 10px; color: #9aa1b0; text-decoration: none; font-weight: 600; font-size: 14px; }
+        .menu-item a:hover { color: #fff; background: rgba(255,255,255,0.04); }
+        .menu-item.active a { background: var(--accent); color: #000; font-weight: 700; }
 
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 30px;
-  align-items: center;
-}
+        main { margin-left: 250px; flex: 1; padding: 40px; }
 
-nav ul li a {
-  color: #ffffff;
-  text-decoration: none;
-  cursor: pointer;
-  font-weight: 400;
-}
+        .page-title h1 { font-size: 30px; font-weight: 700; margin-bottom: 6px; }
+        .page-title p { color: var(--text-muted); font-size: 14px; margin-bottom: 30px; }
 
-nav ul li a:hover {
-  color: #FFD700;
-}
+        .grid-stocks { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        
+        .stock-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 22px;
+            border-radius: 12px;
+        }
 
-.pagehead {
-  padding: 150px 8% 60px;
-  text-align: center;
-  background: #111111;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
+        .cardheader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .cardheader h3 { font-size: 16px; color: #fff; font-weight: 700; }
+        .positive { color: var(--accent); font-weight: 700; }
+        .negative { color: #ff5252; font-weight: 700; }
 
-.pagehead h1 {
-  font-size: 48px;
-  margin-bottom: 20px;
-}
+        .stock-box h2 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+        .muted { font-size: 12px; color: var(--text-muted); }
 
-.pagehead h1 span {
-  background: #FFD700;
-  color:#000000
-}
+        .content-box { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 28px; }
+        .box-header { margin-bottom: 20px; }
+        .box-header h2 { font-size: 18px; color: #fff; font-weight: 700; }
 
-.pagehead p {
-  color: #aaaaaa;
-  max-width: 700px;
-  margin: 0 auto;
-  font-size: 18px;
-}
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th { background: #121316; color: var(--text-muted); padding: 14px 18px; font-size: 12px; font-weight: 700; text-transform: uppercase; border-bottom: 1px solid var(--card-border); }
+        td { padding: 16px 18px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); font-size: 14px; }
+        tr:hover { background: rgba(255, 255, 255, 0.02); }
 
-.section {
-  padding: 80px 8%;
-}
-
-.sectiontitle {
-  font-size: 28px;
-  margin-bottom: 30px;
-  color: #ffffff;
-}
-
-.sectiontitle {
-  border-left: 4px solid #FFD700;
-  padding-left: 15px;
-}
-
-.positive {
-  color: #FFD700;
-  font-weight: 700;
-}
-
-.negative {
-  color: #ff4757;
-  font-weight: 700;
-}
-
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin-bottom: 60px;
-}
-
-.grid .box {
-  flex: 1 1 250px;
-}
-
-.box {
-  background: rgba(255, 215, 0, 0.05);
-  padding: 40px 30px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  cursor: pointer;
-}
-
-.box:hover {
-  background: rgba(255, 215, 0, 0.07);
-  border-color: rgba(255, 215, 0, 0.4);
-}
-
-.box h3 {
-  margin-bottom: 15px;
-  color: #FFC107;
-  font-size: 22px;
-}
-
-.box p {
-  color: #aaaaaa;
-  line-height: 1.6;
-}
-
-
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #111111;
-}
-
-th {
-  background: #000000;
-  color: #FFD700;
-  padding: 12px 15px;
-  text-align: left;
-  border: 1px solid #FFD700;
-  font-size: 14px;
-}
-
-td {
-  padding: 12px 15px;
-  border: 1px solid #333333;
-  color: #ffffff;
-  font-size: 14px;
-}
-
-tr:nth-child(even) {
-  background: #1a1a1a;
-}
-
-footer {
-  text-align: center;
-  padding: 40px 20px;
-  background: #000000;
-  color: #aaaaaa;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  margin-top: auto;
-}
-
-</style>
+        footer { margin-left: 250px; padding: 25px 40px; background: var(--sidebar-bg); border-top: 1px solid var(--card-border); color: var(--text-muted); font-size: 13px; text-align: center; }
+    </style>
 </head>
 <body>
 
-<nav>
-    <h1 onclick="location.href='indexhome.html'">Smart Marketing</h1>
-    <ul>
-        <li><a href="indexhome.html">Home</a></li>
-         <li><a style="color: #FFD700;" href="market.html">Markets</a></li>
-          <li><a href="investmentup.html">Investment</a></li>
-        <li><a href="indices.html">Indices</a></li>
-    </ul>
-</nav>
+    <header>
+        <div class="header-left">
+            <a href="dashboard.html" class="brand-logo">
+                <span class="brand-icon">📈</span>
+                <span class="brand-name">Smart<span>Market</span></span>
+            </a>
+            <span class="status-badge">LIVE MARKETS</span>
+        </div>
+        <div class="user-top-info">
+            <div class="user-tag">ACTIVE TRADER: <strong id="top-username">surya</strong></div>
+            <button class="btn-signout" id="top-logout-btn">Sign Out</button>
+        </div>
+    </header>
 
-<section class="pagehead">
-    <h1>Live <span>Market</span> Overview</h1>
-    <p>Track top gainers, monitor your watchlist, and analyze the market.</p>
-</section>
+    <div class="app-container">
+        <sidebar>
+            <div class="menu-section">
+                <div class="menu-title">Main Menu</div>
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a href="index.html"><span>🏠</span> Home View</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="dashboard.html"><span>⚡</span> Dashboard</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="journal.html"><span>📖</span> Trade Journal</a>
+                    </li>
+                    <li class="menu-item active">
+                        <a href="market.html"><span>📈</span> Markets</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="indices.html"><span>🏛️</span> Indices</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="investmentup.html"><span>💰</span> Investments</a>
+                    </li>
+                </ul>
+            </div>
+        </sidebar>
 
-<section class="section">
-    <h2 class="sectiontitle">Major Indina Markets & Movers</h2>
-    <div class="grid">
-        <div class="box">
-            <div class="cardheader">
-                <h3>NIFTY 50</h3>
-                <span class="positive">+0.65%</span>
+        <main>
+            <div class="page-title">
+                <h1>Live Markets Overview</h1>
+                <p>Track top Indian market gainers and monitor real-time stock screener quotes.</p>
             </div>
-            <h2>&#8377;22,450.15</h2>
-            <p class="muted">Volume: 310M</p>
-        </div>
-        <div class="box">
-            <div class="cardheader">
-                <h3>BANK NIFTY</h3>
-                <span class="positive">+1.10%</span>
-            </div>
-            <h2>&#8377;48,120.30</h2>
-            <p class="muted">Volume: 185M</p>
-        </div>
 
-<div class="box">
-            <div class="cardheader">
-                <h3>INDIA VIX</h3>
-                <span class="positive">+1.10%</span>
+            <div class="grid-stocks" id="market-grid">
+                <p style="color:var(--text-muted);">Loading live stock prices...</p>
             </div>
-            <h2>&#8377;48,120.30</h2>
-            <p class="muted">Volume: 185M</p>
-        </div>
 
-        <div class="box">
-            <div class="cardheader">
-                <h3>SENSEX</h3>
-                <span class="positive">+0.58%</span>
+            <div class="content-box">
+                <div class="box-header">
+                    <h2>Market Screener</h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Asset / Symbol</th>
+                            <th>Last Price</th>
+                            <th>Daily Change</th>
+                            <th>Day High / Low</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="market-screener-body">
+                        <tr><td colspan="5" style="color:var(--text-muted);">Loading live screener...</td></tr>
+                    </tbody>
+                </table>
             </div>
-            <h2>&#8377;73,950.40</h2>
-            <p class="muted">Volume: 12M</p>
-        </div>
-        <div class="box">
-            <div class="cardheader">
-                <h3>ICICI BANK </h3>
-                <span class="negative">-3.20%</span>
-            </div>
-            <h2>&#8377;11.85</h2>
-            <p class="muted">Volatility Index</p>
-        </div>
-        <div class="box">
-            <div class="cardheader">
-                <h3>Reliance</h3>
-                <span class="positive">+4.25%</span>
-            </div>
-            <h2>&#8377;2,875.20</h2>
-            <p class="muted">Volume: 45.2M</p>
-        </div>
-        <div class="box">
-            <div class="cardheader">
-                <h3>HDFC Bank</h3>
-                <span class="negative">-2.10%</span>
-            </div>
-            <h2>&#8377;1,470.85</h2>
-            <p class="muted">Volume: 82.1M</p>
-        </div>
-        <div class="box">
-            <div class="cardheader">
-                <h3>SBI Bank</h3>
-                <span class="positive">+1.80%</span>
-            </div>
-            <h2>&#8377;750.40</h2>
-            <p class="muted">Volume: 12.5M</p>
-        </div>
+        </main>
     </div>
 
-    <h2 class="sectiontitle">Market Screener</h2>
-    
-        <table>
-            <thead>
-                <tr>
-                    <th>Asset</th>
-                    <th>Last Price</th>
-                    <th>24h Change</th>
-                    <th>Market Cap</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Apple Inc. (AAPL)</td>
-                    <td>$173.50</td>
-                    <td class="positive">+1.12%</td>
-                    <td>$2.68T</td>
-                </tr>
-                <tr>
-                    <td>Microsoft Corp. (MSFT)</td>
-                    <td>$405.20</td>
-                    <td class="positive">+0.85%</td>
-                    <td>$3.01T</td>
-                </tr>
-                <tr>
-                    <td>NVIDIA Corp. (NVDA)</td>
-                    <td>$885.10</td>
-                    <td class="positive">+3.45%</td>
-                    <td>$2.20T</td>
-                </tr>
-                <tr>
-                    <td>Netflix Inc. (NFLX)</td>
-                    <td>$612.30</td>
-                    <td class="negative">-1.45%</td>
-                    <td>$264B</td>
-                </tr>
-                <tr>
-                    <td>Tata Consultancy (TCS)</td>
-                    <td>â‚¹3,980.00</td>
-                    <td class="positive">+0.50%</td>
-                    <td>â‚¹14.5T</td>
-                </tr>
-                <tr>
-                    <td>Infosys Ltd. (INFY)</td>
-                    <td>â‚¹1,485.60</td>
-                    <td class="negative">-0.35%</td>
-                    <td>â‚¹6.1T</td>
-                </tr>
-                <tr>
-                    <td>ICICI Bank (ICICIBANK)</td>
-                    <td>â‚¹1,120.45</td>
-                    <td class="positive">+1.25%</td>
-                    <td>â‚¹7.8T</td>
-                </tr>
-                <tr>
-                    <td>Tesla Inc. (TSLA)</td>
-                    <td>$175.22</td>
-                    <td class="negative">-2.15%</td>
-                    <td>$550B</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+    <footer>
+        <p>© 2026 SmartMarket | Live Stock Screener</p>
+    </footer>
 
-<footer>
-    <p>Â© 2026 Smart Marketing | Data is delayed by 15 minutes. Trading involves high risk.</p>
-</footer>
+    <script src="app.js"></script>
+    <script>
+        async function loadMarketPage() {
+            const user = SmartMarket.getUser();
+            if (user) {
+                document.getElementById('top-username').innerText = user.name.toLowerCase();
+            }
 
+            const logoutBtn = document.getElementById('top-logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', () => {
+                    SmartMarket.removeToken();
+                    alert('Logged out successfully.');
+                    window.location.href = 'index.html';
+                });
+            }
+
+            try {
+                const { stocks } = await SmartMarket.fetchAPI('/api/market/stocks');
+                const grid = document.getElementById('market-grid');
+                const tbody = document.getElementById('market-screener-body');
+
+                if (grid) {
+                    grid.innerHTML = stocks.map(s => {
+                        const isPos = s.change >= 0;
+                        const colorClass = isPos ? 'positive' : 'negative';
+                        const sign = isPos ? '+' : '';
+                        return `
+                            <div class="stock-box">
+                                <div class="cardheader">
+                                    <h3>${s.name}</h3>
+                                    <span class="${colorClass}">${sign}${s.changePercent}%</span>
+                                </div>
+                                <h2>₹${s.price.toLocaleString('en-IN')}</h2>
+                                <p class="muted">Vol: ${s.volume ? s.volume.toLocaleString('en-IN') : '2.4M'} | Range: ₹${s.low} - ₹${s.high}</p>
+                            </div>
+                        `;
+                    }).join('');
+                }
+
+                if (tbody) {
+                    tbody.innerHTML = stocks.map(s => {
+                        const isPos = s.change >= 0;
+                        const colorClass = isPos ? 'positive' : 'negative';
+                        const sign = isPos ? '+' : '';
+                        return `
+                            <tr>
+                                <td><strong>${s.name}</strong> <span style="color:var(--text-muted);">(${s.symbol})</span></td>
+                                <td>₹${s.price.toLocaleString('en-IN')}</td>
+                                <td class="${colorClass}">${sign}₹${s.change} (${sign}${s.changePercent}%)</td>
+                                <td>₹${s.high} / ₹${s.low}</td>
+                                <td><span style="color:var(--accent); font-weight:600;">Live Quote</span></td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
+            } catch (err) {
+                console.error('Market load error:', err);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadMarketPage);
+        setInterval(loadMarketPage, 10000);
+    </script>
 </body>
 </html>
-

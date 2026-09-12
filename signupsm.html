@@ -105,10 +105,11 @@
         </div>
     </div>
 
+    <script src="app.js"></script>
     <script>
         const signupForm = document.getElementById('signup-form');
 
-        signupForm.addEventListener('submit', function (event) {
+        signupForm.addEventListener('submit', async function (event) {
             event.preventDefault();
 
             const firstname = document.getElementById('firstname').value.trim();
@@ -117,54 +118,51 @@
             const password = document.getElementById('password').value;
             const confirmpassword = document.getElementById('confirmpassword').value;
 
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const passreg = /^[a-zA-Z0-9]{8,}$/;
-
-            if (firstname === "") {
-                alert("Please enter your first name.");
-                return false;
+            if (!firstname || !lastname) {
+                alert("Please enter your full name.");
+                return;
             }
 
-            if (lastname === "") {
-                alert("Please enter your last name.");
-                return false;
-            }
-
-            if (email === "") {
+            if (!email) {
                 alert("Please enter your email address.");
-                return false;
+                return;
             }
 
-            if (!emailRegex.test(email)) {
-                alert("Please enter a valid email address.");
-                return false;
-            }
-
-            if (password === "") {
-                alert("Please enter a password.");
-                return false;
-            }
-
-            if (!passreg.test(password)) {
-                alert("Password must be at least 8 characters and contain only letters and numbers.");
-                return false;
-            }
-
-            if (confirmpassword === "") {
-                alert("Please confirm your password.");
-                return false;
+            if (!password || password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return;
             }
 
             if (password !== confirmpassword) {
                 alert("Passwords do not match.");
-                return false;
+                return;
             }
 
-            alert("Account Created Successfully!");
-            window.location.href = "indexhome.html";
-            return true;
+            try {
+                const res = await fetch('/api/auth/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: `${firstname} ${lastname}`,
+                        email: email,
+                        password: password
+                    })
+                });
+
+                const data = await res.json();
+                if (!res.ok) {
+                    throw new Error(data.error || 'Signup failed');
+                }
+
+                SmartMarket.setToken(data.token);
+                SmartMarket.setUser(data.user);
+
+                alert("🎉 Account Created Successfully! Welcome to Smart Market.");
+                window.location.href = "indexhome.html";
+            } catch (err) {
+                alert("❌ Signup Error: " + err.message);
+            }
         });
     </script>
-
 </body>
 </html>
